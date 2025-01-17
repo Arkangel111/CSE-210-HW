@@ -4,6 +4,11 @@ class Program
 {
     static void Main(string[] args)
     {
+        Journal journal = new();
+
+        Console.Write("Enter your username: ");
+        string userName = Console.ReadLine();
+
         while (true)
         {
             Console.WriteLine("1. Write new entry");
@@ -17,15 +22,17 @@ class Program
 
             if (userInput == "1")
             {
-                Console.WriteLine("Write new entry");
+                journal.CreateNewEntry();
             }
             else if (userInput == "2")
             {
-                Console.WriteLine("Display Journal");
+                Console.WriteLine("Displaying Journals");
+                journal.DisplayEntries();
             }
             else if (userInput == "3")
             {
-                Console.WriteLine("Save Journal");
+                Console.WriteLine("Saving Journal...");
+                journal.SaveToFile(userName);
             }
             else if (userInput == "4")
             {
