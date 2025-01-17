@@ -1,13 +1,12 @@
-using System.Net.Mail;
-
 public class Journal
 {
     public List<Entry> _entries = new();
+
     public void CreateNewEntry()
     {
         string prompt = PromptGenerator.GetRandomPrompt();
         Console.WriteLine(prompt);
-        Console.Write("Write the text of your entry as a single string.");
+        Console.Write("Write the text of your entry as a single string: ");
         string entryText = Console.ReadLine();
         Entry entry = new(prompt, entryText);
         _entries.Add(entry);
@@ -22,9 +21,9 @@ public class Journal
         else
         {
             Console.WriteLine("Your recent entries:");
-            for (int i = 0; i < _entries.Count; i++)
+            foreach (var entry in _entries)
             {
-                Console.WriteLine($"{i + 1}. {_entries[i]}");
+                entry.Display();
             }
         }
     }
@@ -32,46 +31,57 @@ public class Journal
     public void SaveToFile(string userName)
     {
         string projectDirectory = Directory.GetCurrentDirectory();
-
         string folderPath = Path.Combine(projectDirectory, "Journals");
         Directory.CreateDirectory(folderPath);
 
         string date = DateTime.Now.ToString("yyyy-MM-dd");
         string file = $"{userName}_{date}.txt";
         string filePath = Path.Combine(folderPath, file);
-        string content = string.Join(Environment.NewLine, _entries);
+
+        string content = string.Join(Environment.NewLine, _entries.Select(e => e.ToString()));
         File.WriteAllText(filePath, content);
 
         Console.WriteLine($"Journal saved to {filePath}");
     }
 
-    public void LoadFromFile(string file)
+    public void LoadFromFile()
     {
-        string folderpath = Path.Combine(Directory.GetCurrentDirectory(), "Journals");
-        if (!Directory.Exists(folderpath))
+        string folderPath = Path.Combine(Directory.GetCurrentDirectory(), "Journals");
+
+        if (!Directory.Exists(folderPath))
         {
-            Console.WriteLine("No Journals found. The Directory does not exist.")
+            Console.WriteLine("No journals found. The directory does not exist.");
             return;
         }
-        string[] journalFiles = Directory.GetFiles(folderpath, "*.txt");
+
+        string[] journalFiles = Directory.GetFiles(folderPath, "*.txt");
 
         if (journalFiles.Length == 0)
         {
-            Console.WriteLine("no Journals found in the directory");
+            Console.WriteLine("No journals found in the directory.");
             return;
         }
-        Console.WriteLine("Available journals: ");
+
+        Console.WriteLine("Available journals:");
         for (int i = 0; i < journalFiles.Length; i++)
         {
-            string file = Path.GetFileName(journalFiles[i]);
-            Console.WriteLine($"{i + 1}. {file}");
+            Console.WriteLine($"{i + 1}. {Path.GetFileName(journalFiles[i])}");
+        }
 
-            Console.WriteLine("enter the file number you wish to load:");
-            int selectedIndex = int.Console.ReadLine();
+        Console.WriteLine("Enter the number of the journal you'd like to load:");
+        if (int.TryParse(Console.ReadLine(), out int selectedIndex) &&
+            selectedIndex > 0 &&
+            selectedIndex <= journalFiles.Length)
+        {
             string selectedFile = journalFiles[selectedIndex - 1];
-
             string content = File.ReadAllText(selectedFile);
+
+            Console.WriteLine($"\nContents of {Path.GetFileName(selectedFile)}:\n");
             Console.WriteLine(content);
+        }
+        else
+        {
+            Console.WriteLine("Invalid selection. Returning to the menu.");
         }
     }
 }

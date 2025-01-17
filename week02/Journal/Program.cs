@@ -11,13 +11,14 @@ class Program
 
         while (true)
         {
+            Console.WriteLine("\nMenu:");
             Console.WriteLine("1. Write new entry");
-            Console.WriteLine("2. display");
-            Console.WriteLine("3. save");
-            Console.WriteLine("4. load");
-            Console.WriteLine("5. quit");
+            Console.WriteLine("2. Display entries");
+            Console.WriteLine("3. Save journal");
+            Console.WriteLine("4. Load journal");
+            Console.WriteLine("5. Quit");
 
-            Console.Write("enter selection: ");
+            Console.Write("Enter selection: ");
             string userInput = Console.ReadLine();
 
             if (userInput == "1")
@@ -26,27 +27,25 @@ class Program
             }
             else if (userInput == "2")
             {
-                Console.WriteLine("Displaying Journals");
                 journal.DisplayEntries();
             }
             else if (userInput == "3")
             {
-                Console.WriteLine("Saving Journal...");
                 journal.SaveToFile(userName);
             }
             else if (userInput == "4")
             {
-                Console.WriteLine("Load Journal");
+                journal.LoadFromFile();
             }
             else if (userInput == "5")
             {
-                return;
+                Console.WriteLine("Goodbye!");
+                break;
             }
             else
             {
-                Console.WriteLine("Please try again.");
+                Console.WriteLine("Invalid input. Please try again.");
             }
         }
     }
-
 }
