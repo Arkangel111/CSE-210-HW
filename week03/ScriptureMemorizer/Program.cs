@@ -11,7 +11,17 @@ class Program
 
         Console.WriteLine(scripture.GetDisplayText());
 
+        while (!scripture.IsCompletelyHidden())
+        {
+            Console.Clear();
+            Console.WriteLine(scripture.GetDisplayText());
+            Console.WriteLine("Press Enter when ready...");
+            Console.ReadLine();
+            scripture.HideRandomWords();
+        }
 
+        Console.WriteLine("\nCongrats on Memorizing a scripture!");
+    
 
 
         //loop 
