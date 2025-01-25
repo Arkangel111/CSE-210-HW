@@ -20,18 +20,35 @@ public class Scripture
         //create word object and put it into _words
     }
 
-    public void HideRandomWords(int numbertohide)
+    public void HideRandomWords()
     {
-        // set the state of a randomly selected group of words to hidden
-        // need to find a set of visible words
         // need to randomly select 'numbertohide' of those words
+        Random random = new Random();
+        int numberToHide = random.Next(1, 4);
+
+        // need to find a set of visible words
+        var visibleWords = _words.Where(word => !word.IsHidden()).ToList();
+
+        // set the state of a randomly selected group of words to hidden
+        numberToHide = Math.Min(numberToHide, visibleWords.Count);
+
         // Use the Hide function
+        for (int i = 0; i < numberToHide; i++)
+        {
+            int randomIndex = random.Next(visibleWords.Count);
+            visibleWords[randomIndex].Hide();
+            visibleWords.RemoveAt(randomIndex);
+        }
     }
 
     public string GetDisplayText()
     {
         //Reference and all the words
-        return "";
+        string referenceText = _reference.GetDisplayText();
+
+        string wordsText = string.Join(" ", _words.Select(word => word.GetDisplayText()));
+
+        return $"{referenceText}\n{wordsText}";
     }
 
     public bool IsCompletelyHidden()

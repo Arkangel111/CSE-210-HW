@@ -14,10 +14,18 @@ class Program
         w.Show();
         Console.WriteLine("Test Show: " + w.GetDisplayText());
 
-        // Reference reference = new Reference("1 Nephi", 3, 7);
-        // Scripture scripture = new Scripture(reference, "I will go and do....");
+        Reference reference = new Reference("1 Nephi", 3, 7, 9);
+        Scripture scripture = new Scripture(reference, "I will go and do the things the lord commands.");
 
-        // Console.WriteLine(reference.GetDisplayText());
+        Console.WriteLine("Shown:");
+        Console.WriteLine(scripture.GetDisplayText());
+
+        scripture.HideRandomWords();
+
+        Console.WriteLine("Hidden:");
+        Console.WriteLine(scripture.GetDisplayText());
+
+
         //loop 
         // display, hide, check if need to quit
         // Use the functions in the scripture class.
