@@ -18,16 +18,17 @@ public class Word
     }
     public void Show()
     {
-
+        _isHidden = false;
     }
     public bool IsHidden()
     {
-        return false;
+        return _isHidden;
     }
     public string GetDisplayText()
     {
         // should return the word if visible or return underscores ___ if hidden.
-        return _text;
+        // adjusted text to _ based on length of word.
+        return _isHidden ? new string('_', _text.length) : _text;
     }
 }
 
