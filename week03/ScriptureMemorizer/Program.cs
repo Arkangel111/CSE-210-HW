@@ -5,18 +5,15 @@ class Program
 {
     static void Main(string[] args)
     {
-        // Hardcoded Scriptures
-        var scriptures = new List<Scripture>
-        {
-            new Scripture(new Reference("John", 3, 16), "For God so loved the world that he gave his one and only Son"),
-            new Scripture(new Reference("Genesis", 1, 1), "In the beginning God created the heavens and the earth"),
-            new Scripture(new Reference("Psalm", 23, 1), "The Lord is my shepherd; I shall not want")
-        };
+        Word w = new Word("truth");
+        Console.WriteLine(w.GetDisplayText());
 
-        // Display scriptures
-        foreach (var scripture in scriptures)
-        {
-            Console.WriteLine(scripture.GetDisplayText());
-        }
+        Reference reference = new Reference("1 Nephi", 3, 7);
+        Scripture scripture = new Scripture(reference, "I will go and do....");
+
+        Console.WriteLine(reference.GetDisplayText());
+        //loop 
+        // display, hide, check if need to quit
+        // Use the functions in the scripture class.
     }
 }

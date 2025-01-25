@@ -1,5 +1,7 @@
 using System;
-class Word
+using System.ComponentModel;
+
+public class Word
 {
     private string _text;
     private bool _isHidden;
@@ -9,24 +11,23 @@ class Word
         _text = text;
         _isHidden = false;
     }
-
     public void Hide()
     {
         _isHidden = true;
-    }
 
+    }
     public void Show()
     {
-        _isHidden = false;
-    }
 
+    }
     public bool IsHidden()
     {
-        return _isHidden;
+        return false;
     }
-
     public string GetDisplayText()
     {
-        return _isHidden ? "_____" : _text;
+        // should return the word if visible or return underscores ___ if hidden.
+        return _text;
     }
 }
+
