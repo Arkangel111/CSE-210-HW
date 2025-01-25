@@ -28,7 +28,7 @@ public class Word
     {
         // should return the word if visible or return underscores ___ if hidden.
         // adjusted text to _ based on length of word.
-        return _isHidden ? new string('_', _text.length) : _text;
+        return _isHidden ? new string('_', _text.Length) : _text;
     }
 }
 
