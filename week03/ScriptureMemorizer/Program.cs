@@ -5,24 +5,10 @@ class Program
 {
     static void Main(string[] args)
     {
-        Word w = new Word("truth");
-        Console.WriteLine("Test: " + w.GetDisplayText());
+        Console.Clear();
+        Reference reference = new Reference("1 Nephi", 3, 7);
+        Scripture scripture = new Scripture(reference, "I will go and do the things the Lord commands.");
 
-        w.Hide();
-        Console.WriteLine("Test Hide: " + w.GetDisplayText());
-
-        w.Show();
-        Console.WriteLine("Testing all hidden: " + w.GetDisplayText());
-
-        Reference reference = new Reference("1 Nephi", 3, 7, 9);
-        Scripture scripture = new Scripture(reference, "Faith.");
-
-        Console.WriteLine("Shown:");
-        Console.WriteLine(scripture.GetDisplayText());
-
-        scripture.HideRandomWords();
-
-        Console.WriteLine("Hidden:");
         Console.WriteLine(scripture.GetDisplayText());
 
 
