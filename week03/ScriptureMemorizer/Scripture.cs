@@ -44,16 +44,19 @@ public class Scripture
     public string GetDisplayText()
     {
         //Reference and all the words
-        string referenceText = _reference.GetDisplayText();
+        string referenceText = _reference.GetDisplayText() + "\n";
 
-        string wordsText = string.Join(" ", _words.Select(word => word.GetDisplayText()));
+        foreach (var word in _words)
+        {
+            referenceText += word.GetDisplayText() + " ";
+        }
 
-        return $"{referenceText}\n{wordsText}";
+        return referenceText.Trim();
     }
 
     public bool IsCompletelyHidden()
     {
-        return false;
+        return _words.All(word => word.IsHidden());
     }
 
 }
