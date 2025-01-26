@@ -19,7 +19,7 @@ public class Scripture
         //split and then loop through each word
         //create word object and put it into _words
     }
-
+    public Reference Reference => _reference;
     public void HideRandomWords()
     {
         // need to randomly select 'numbertohide' of those words
