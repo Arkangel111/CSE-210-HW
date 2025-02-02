@@ -1,5 +1,5 @@
 using System;
-using System.Security.Cryptography.X509Certificates;
+using System.Collections.Generic;
 
 public class Order
 {
@@ -8,36 +8,37 @@ public class Order
     private const decimal US_Rate = 5;
     private const decimal EU_Rate = 35;
 
-
     public Order(Customer customer, List<Product> products)
     {
         _customer = customer;
-        _products = products;
+        _products = new List<Product>(products);
     }
 
-    public decimal TotalCost()
+    public void AddProduct(Product product)
     {
-        decimal prodTotal = 0;
+        _products.Add(product);
+    }
 
+    public double TotalCost()
+    {
+        double orderTotal = 0;
+
+        // Sum up the total cost of all products
         foreach (var product in _products)
         {
-            prodTotal += product.TotalCost();
+            orderTotal += product.ProductTotalCost();
         }
 
-        if (_customer.InUSA())
-        {
-            return prodTotal + (prodTotal * US_Rate / 100);
-        }
+        // Add the flat shipping rate
+        double shippingCost = _customer.InUSA() ? (double)US_Rate : (double)EU_Rate;
+        orderTotal += shippingCost;
 
-        else
-        {
-            return prodTotal + (prodTotal * EU_Rate / 100);
-        }
+        return orderTotal;
     }
 
     public string GetPackingLabel()
     {
-        string label = "Label:\n";
+        string label = "Packing Label:\n";
         foreach (var product in _products)
         {
             label += $"{product.GetProductName()}  (ID: {product.GetProductID()})\n";
@@ -47,6 +48,6 @@ public class Order
 
     public string GetShippingLabel()
     {
-        return $"Shipping to {_customer.GetName()} at {_customer.GetAddress()}";
+        return $"Shipping to {_customer.GetName()} at:\n{_customer.GetAddress()}";
     }
 }

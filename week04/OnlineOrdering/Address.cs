@@ -16,9 +16,19 @@ public class Address
         _country = country;
 
     }
+
+    public bool InUSA()
+    {
+        return _country.ToLower() == "usa";
+    }
+
+    public string GetAddress()
+    {
+        return $"{_address},\n{_city}, {_state}, {_country}";
+    }
     public void Display()
     {
-        Console.WriteLine($"Address: {_address} \nCity: {_city} \nState: {_state} \nCountry: {_country}");
+        Console.WriteLine(GetAddress());
     }
 
 }

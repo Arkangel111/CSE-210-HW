@@ -5,9 +5,9 @@ public class Product
     private string _productName;
     private string _productID;
     private int _quantity;
-    private int _price;
+    private double _price;
 
-    public Product(string productname, string productid, int quantity, int price)
+    public Product(string productname, string productid, int quantity, double price)
     {
         _productName = productname;
         _productID = productid;
@@ -15,7 +15,7 @@ public class Product
         _price = price;
     }
 
-    public int TotalCost()
+    public double ProductTotalCost()
     {
         return _quantity * _price;
     }
@@ -36,7 +36,7 @@ public class Product
         Console.WriteLine("Product ID: " + _productID);
         Console.WriteLine("Quantity: " + _quantity);
         Console.WriteLine("Price: " + _price);
-        Console.WriteLine($"Total Cost: {TotalCost}");
+        Console.WriteLine($"Total Cost: {ProductTotalCost}");
     }
 
 }
