@@ -10,14 +10,9 @@ public class Comment
         _username = username;
         _text = text;
     }
-
-    public string GetUsername()
+    
+    public void Display()
     {
-        return _username;
-    }
-
-    public string GetText()
-    {
-        return _text;
+        Console.WriteLine($"{_username}: {_text}");
     }
 }
