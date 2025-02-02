@@ -15,7 +15,7 @@ public class Product
         _price = price;
     }
 
-    public int TotalCost(int _quantity, int _price)
+    public int TotalCost()
     {
         return _quantity * _price;
     }
@@ -36,7 +36,7 @@ public class Product
         Console.WriteLine("Product ID: " + _productID);
         Console.WriteLine("Quantity: " + _quantity);
         Console.WriteLine("Price: " + _price);
-        Console.WriteLine($"Total Cost: {TotalCost(_quantity, _price)}");
+        Console.WriteLine($"Total Cost: {TotalCost}");
     }
 
 }

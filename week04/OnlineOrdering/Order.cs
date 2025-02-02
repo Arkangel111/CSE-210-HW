@@ -33,15 +33,20 @@ public class Order
         {
             return prodTotal + (prodTotal * EU_Rate / 100);
         }
+    }
 
-
-        public string GetPackingLabel()
+    public string GetPackingLabel()
     {
         string label = "Label:\n";
         foreach (var product in _products)
         {
             label += $"{product.GetProductName()}  (ID: {product.GetProductID()})\n";
         }
+        return label;
     }
-}
+
+    public string GetShippingLabel()
+    {
+        return $"Shipping to {_customer.GetName()} at {_customer.GetAddress()}";
+    }
 }
