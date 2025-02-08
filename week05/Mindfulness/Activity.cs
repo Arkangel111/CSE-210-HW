@@ -1,6 +1,7 @@
 using System;
+using System.Security.Cryptography.X509Certificates;
 
-class Activity
+public class Activity
 {
     private string _name;
     private string _description;
@@ -11,26 +12,39 @@ class Activity
         _name = name;
         _description = description;
         _duration = duration;
+
     }
 
     public void DisplayStartingMessage()
     {
         Console.WriteLine($"Welcome to the {_name} activity");
         Console.WriteLine($"\n{_description}");
+
+        Console.WriteLine("How long, in seconds, would you like for your session? ");
+        _duration = Convert.ToInt32(Console.ReadLine());
+
+        Console.Clear();
+        Console.WriteLine("Get ready...");
+
+        ShowSpinner(8);
+
     }
 
     public void DisplayEndingMessage()
     {
-        Console.WriteLine($"");
+        Console.WriteLine($"Well done.");
+        Console.WriteLine($"You completed another {_duration} seconds of the {_name} Activity.");
     }
 
-    public void DisplayDuration()
-    {
-        Console.WriteLine($"How long in seconds would you like for your session? ");
-        int _duration = int.Parse(Console.ReadLine());
-        Console.Clear();
 
-        Console.WriteLine($"Get ready...");
+    // Console.WriteLine($"How long in seconds would you like for your session? ");
+    // int _seconds = int.Parse(Console.ReadLine());
+    // Console.Clear();
+
+    // Console.WriteLine($"Get ready...");
+    public void ShowSpinner(int seconds)
+    {
+
 
         // |/-\
         List<string> animationString = new List<string>();
@@ -39,14 +53,47 @@ class Activity
         animationString.Add("-");
         animationString.Add("\\");
 
-        foreach (string s in animationString)
+        // foreach (string s in animationString)
+        // {
+        //     Console.Write(s);
+        //     Thread.Sleep(500);
+        //     Console.Write("\b \b");
+        // }
+
+        DateTime startTime = DateTime.Now;
+        DateTime endTime = startTime.AddSeconds(4);
+
+        int i = 0;
+
+        while (DateTime.Now < endTime)
         {
+            string s = animationString[i];
             Console.Write(s);
             Thread.Sleep(500);
             Console.Write("\b \b");
-        }
 
-        DateTime startTime = DateTime.Now;
-        DateTime endTime = startTime.AddSeconds(8);
+            i++;
+
+            if (i >= animationString.Count)
+            {
+                i = 0;
+            }
+        }
     }
+    public void ShowCountDown(int seconds, string message)
+    {
+        Console.Write(message + " ");
+        for (int i = seconds; i >= 0; i--)
+        {
+            Console.Write(i);
+            Thread.Sleep(1000);
+            Console.Write("\b \b");
+        }
+        Console.WriteLine("");
+    }
+    public int GetDuration()
+    {
+        return _duration;
+    }
+
 }
