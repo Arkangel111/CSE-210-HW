@@ -8,7 +8,16 @@ class Program
 {
     static void Main(string[] args)
     {
-        testBreathing();
+        // Console.Clear();
+        // DisplayStartingMessage();
+        // ShowSpinner(8);
+
+        // Console.Clear();
+        // Console.WriteLine("Get ready...");
+
+        testReflecting();
+
+        // DisplayEndingMessage();
     }
 
     static void testMenu()
@@ -35,8 +44,17 @@ class Program
     static void testBreathing()
     {
 
-        Breathing breathing = new Breathing();
+        BreathingActivity breathing = new();
         breathing.Run();
+
+        Console.ReadLine();
+
+    }
+    static void testReflecting()
+    {
+
+        ReflectingActivity reflecting = new();
+        reflecting.Run();
 
         Console.ReadLine();
 
