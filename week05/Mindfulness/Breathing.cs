@@ -9,12 +9,9 @@ public class BreathingActivity : Activity
     }
     public void Run()
     {
-        // Console.Clear();
-        // DisplayStartingMessage();
-        // ShowSpinner(8);
-
-        // Console.Clear();
-        // Console.WriteLine("Get ready...");
+        Console.Clear();
+        DisplayStartingMessage();
+        ShowSpinner(8);
 
         int roundedDuration = (int)Math.Round(GetDuration() / 5.0) * 5;
         for (int i = 0; i < roundedDuration; i += 10)
@@ -24,7 +21,8 @@ public class BreathingActivity : Activity
             Console.WriteLine();
         }
 
-        // DisplayEndingMessage();
+        DisplayEndingMessage();
+        ShowSpinner(8);
     }
 }
 

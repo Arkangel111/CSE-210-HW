@@ -33,6 +33,10 @@ public class ReflectingActivity : Activity
 
     public void Run()
     {
+        DisplayStartingMessage();
+        int duration = GetDuration(); // used AI for this, I got stuck in an infinite loop when prompting for duration
+        DateTime endTime = DateTime.Now.AddSeconds(duration + 15);
+
         Console.Clear();
         Console.WriteLine("Consider the following prompt:");
         Console.WriteLine();
@@ -42,16 +46,33 @@ public class ReflectingActivity : Activity
         Console.WriteLine("When you have something in mind, press enter to continue.");
         Console.ReadLine();
         Console.WriteLine();
-        Console.WriteLine("Now ponder  on each of the following questions as they relate to this experience.");
+        Console.WriteLine("Now ponder  on each of the following questions as they relate to this experience. (press enter for new question)");
+
         ShowCountDown(5, "You may begin in: ");
-        foreach (string question in _questions)
+
+        // the following lines of code were with help of AI, I ran into an infinite loop here and had to find out where I went wrong
+        while (DateTime.Now < endTime)
         {
+            string question = GetRandomQuestion();
             Console.WriteLine();
             Console.WriteLine(question);
-            ShowSpinner(10);
+            Console.ReadLine();
+
+            if (DateTime.Now >= endTime)
+                break;
+        // end AI help section
         }
 
+        // foreach (string question in _questions)
+        // {
+        //     Console.WriteLine();
+        //     Console.WriteLine(question);
+        //     ShowSpinner(10);
+        // }
+
         Console.WriteLine();
+        DisplayEndingMessage();
+        ShowSpinner(8);
     }
 
     public string GetRandomPrompt()
@@ -83,4 +104,5 @@ public class ReflectingActivity : Activity
             Console.WriteLine($"-= {question} =-");
         }
     }
+    
 }

@@ -21,15 +21,21 @@ class Menu
                 {
                     case "1":
                         Console.WriteLine("Starting breathing activity...");
-                        return true;
+                        BreathingActivity breathingActivity = new BreathingActivity();
+                        breathingActivity.Run();
+                        break;
 
                     case "2":
                         Console.WriteLine("Starting reflecting activity...");
-                        return true;
+                        ReflectingActivity reflectingActivity = new ReflectingActivity();
+                        reflectingActivity.Run();
+                        break;
 
                     case "3":
                         Console.WriteLine("Starting listing activity...");
-                        return true;
+                        ListingActivity listingActivity = new ListingActivity();
+                        listingActivity.Run();
+                        break;
 
                     case "4":
                         Console.WriteLine("Goodbye...");

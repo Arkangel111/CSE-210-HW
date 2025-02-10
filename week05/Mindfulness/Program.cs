@@ -6,18 +6,13 @@ class Program
 // added test programs
 
 {
-    static void Main(string[] args)
+    static void Main()
     {
-        // Console.Clear();
-        // DisplayStartingMessage();
-        // ShowSpinner(8);
-
-        // Console.Clear();
-        // Console.WriteLine("Get ready...");
-
-        testReflecting();
-
-        // DisplayEndingMessage();
+        while (Menu.MainMenu())
+        {
+            Console.WriteLine("Press any key to return to menu...");
+            Console.ReadKey();
+        }
     }
 
     static void testMenu()
