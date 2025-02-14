@@ -15,26 +15,12 @@ public class Video
         _comments = new List<Comment>();
     }
 
-    public void AddComment(string username, string text)
+
+    public void AddComment(Comment comment)
     {
-        Comment newComment = new Comment(username, text);
-        _comments.Add(newComment);
+        _comments.Add(comment);
     }
 
-    public void DisplayComments()
-    {
-        if (_comments.Count == 0)
-        {
-            Console.WriteLine("Be the first to comment!");
-        }
-        else
-        {
-            foreach (var comment in _comments)
-            {
-                comment.Display();
-            }
-        }
-    }
     public int CommentCount()
     {
         return _comments.Count;
@@ -47,7 +33,10 @@ public class Video
         Console.WriteLine($"Length: {_length} seconds");
         Console.WriteLine($"Comment count: {CommentCount()}");
         Console.WriteLine("\nUser comments:");
-        DisplayComments();
+        foreach (Comment comment in _comments)
+        {
+            Console.WriteLine($"  {comment.GetUserName()} - {comment.GetComment()}");
+        }
         Console.WriteLine("======================");
     }
 

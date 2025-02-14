@@ -3,16 +3,21 @@ using System;
 public class Comment
 {
     private string _username;
-    private string _text;
+    private string _comment;
 
-    public Comment(string username, string text)
+    public Comment(string username, string comment)
     {
         _username = username;
-        _text = text;
+        _comment = comment;
     }
-    
-    public void Display()
+
+    public string GetUserName()
     {
-        Console.WriteLine($"{_username}: {_text}");
+        return _username;
+    }
+
+    public string GetComment()
+    {
+        return _comment;
     }
 }
