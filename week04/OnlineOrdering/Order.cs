@@ -6,7 +6,7 @@ public class Order
     private Customer _customer;
     private List<Product> _products;
     private const decimal US_Rate = 5;
-    private const decimal EU_Rate = 35;
+    private const decimal International_Rate = 35;
 
     public Order(Customer customer, List<Product> products)
     {
@@ -26,11 +26,11 @@ public class Order
         // Sum up the total cost of all products
         foreach (var product in _products)
         {
-            orderTotal += product.ProductTotalCost();
+            orderTotal += product.GetTotalCost();
         }
 
         // Add the flat shipping rate
-        double shippingCost = _customer.InUSA() ? (double)US_Rate : (double)EU_Rate;
+        double shippingCost = _customer.IsInUSA() ? (double)US_Rate : (double)International_Rate;
         orderTotal += shippingCost;
 
         return orderTotal;
@@ -48,6 +48,6 @@ public class Order
 
     public string GetShippingLabel()
     {
-        return $"Shipping to {_customer.GetName()} at:\n{_customer.GetAddress()}";
+        return $"Shipping to {_customer.GetCustomerName()} at:\n{_customer.GetAddress()}";
     }
 }

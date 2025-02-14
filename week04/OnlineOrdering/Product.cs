@@ -3,19 +3,19 @@ using System;
 public class Product
 {
     private string _productName;
-    private string _productID;
+    private string _productId;
     private int _quantity;
     private double _price;
 
     public Product(string productname, string productid, int quantity, double price)
     {
         _productName = productname;
-        _productID = productid;
+        _productId = productid;
         _quantity = quantity;
         _price = price;
     }
 
-    public double ProductTotalCost()
+    public double GetTotalCost()
     {
         return _quantity * _price;
     }
@@ -27,16 +27,7 @@ public class Product
 
     public string GetProductID()
     {
-        return _productID;
-    }
-
-    public void DisplayProduct()
-    {
-        Console.WriteLine("Product Name: " + _productName);
-        Console.WriteLine("Product ID: " + _productID);
-        Console.WriteLine("Quantity: " + _quantity);
-        Console.WriteLine("Price: " + _price);
-        Console.WriteLine($"Total Cost: {ProductTotalCost}");
+        return _productId;
     }
 
 }
