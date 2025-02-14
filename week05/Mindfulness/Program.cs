@@ -2,8 +2,8 @@ using System;
 
 class Program
 
-// added a menu
-// added test programs
+// added a menu -- This changed a lot off things from the original requirements please look carefully to ensure I get points
+// added some test programs
 
 {
     static void Main()
