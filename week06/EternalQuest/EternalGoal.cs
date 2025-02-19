@@ -1,26 +1,33 @@
 using System;
+using System.Runtime.CompilerServices;
 
 public class EternalGoal : Goal
 {
-    public EternalGoal(string name, string description, string points)
+    private bool _isComplete;
+    private int _totalPoints;
+
+    int timesCompleted = 0;
+
+    public EternalGoal(string name, string description, int points) : base(name, description, points)
     {
-        _shortName = name;
-        _description = description;
-        _points = points;
+        _isComplete = false;
+        _totalPoints = 0;
     }
 
     public override void RecordEvent()
     {
-        return;
+        _totalPoints += _points;
+        timesCompleted++;
+        _isComplete = true;
     }
 
     public override bool IsComplete()
     {
-        return false;
+        return _isComplete;
     }
 
     public override string GetStringRepresentation()
     {
-        return "";
+        return $"SimpleGoal|{_shortName}|{_description}|{_points}|{timesCompleted}";
     }
 }

@@ -1,33 +1,29 @@
 using System;
 
-public class Goal
+public abstract class Goal
 {
-    private string _shortName;
-    private string _description;
-    private string _points;
+    public string _shortName { get; }
+    public string _description { get; }
+    public int _points { get; }
 
-    public Goal(string name, string description, string points)
+    public Goal(string name, string description, int points)
     {
-        return;
+        _shortName = name;
+        _description = description;
+        _points = points;
     }
 
-    public void RecordEvent()
-    {
-        return;
-    }
+    public abstract void RecordEvent();
 
-    public bool IsComplete()
-    {
-        return false;
-    }
+    public abstract bool IsComplete();
 
-    public string GetDetailsString()
+    public virtual string GetDetailsString()
     {
-        return "";
+        // bool complete = IsComplete();
+        // Console.WriteLine($"Debug: Goal {_shortName} IsComplete = {complete}");
+        string status = IsComplete() ? "[X]" : "[ ]";
+        return $"{status} {_shortName}: {_description} ({_points} points)";
     }
+    public abstract string GetStringRepresentation();
 
-    public string GetStringRepresentation()
-    {
-        return "";
-    }
 }
